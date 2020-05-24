@@ -24,6 +24,7 @@ This bot has the following set of features.
 - Mute commands for moderation.
 - Ticket system to apply for certification w/automated questions.
 - Automatic updates to bot status & avatar that happen every few minutes.
+- React to get a role.
 
 
 ## Contributing
@@ -35,7 +36,7 @@ When you are ready, simply create a pull request for your contribution and we wi
 
 ### Donating
 
-You can also help me and the project out by sponsoring me through a [donation on PayPal](http://paypal.me/deltafloof).
+You can also help me and the project out by sponsoring me through a [donation on PayPal](http://paypal.me/discordlabs).
 
 
 ## Discussion, Support and Issues
