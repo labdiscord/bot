@@ -15,6 +15,9 @@ python3 main.py
 
 Note: A mongoDB instance is **required** to run this bot.
 
+## Instant Deployment
+Alternatively, just click this button to develop in [Repl.it][https://repl.it], a top quality in-browser IDE! [![Run on Repl.it](https://repl.it/badge/github/labdiscord/bot)](https://repl.it/github/labdiscord/bot)
+
 ## Features
 This bot has the following set of features.
 - Anti invite (even on msg edit w/bypass role)
