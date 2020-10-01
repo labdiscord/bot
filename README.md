@@ -18,19 +18,14 @@ Note: A mongoDB instance is **required** to run this bot.
 ## Instant Deployment
 Alternatively, just click this button to develop in [Repl.it](https://repl.it), a top quality in-browser IDE! [![Run on Repl.it](https://repl.it/badge/github/labdiscord/bot)](https://repl.it/github/labdiscord/bot)
 
-# Changelog
+## Changelog
 
-## V2.0
-### Added
-- Statuspage.io API Posting
-
-### Updated
+### V2.0
+- Added Statuspage.io API Posting
 - Ticket system now works in a new server.
-
-### Removed
-- Moderation Commands (Migrated to [helper](http://dbots.cc/toast))
-- Reaction Roles (Migrated to [Helper](http://dbots.cc/helper))
-- Certification Commands (Migrated To Discord Bot Labs - Private Bot)
+- Removed Moderation Commands (Migrated to [helper](http://dbots.cc/toast))
+- Removed Reaction Roles (Migrated to [Helper](http://dbots.cc/helper))
+- Removed Certification Commands (Migrated To Discord Bot Labs - Private Bot)
 
 ## Features
 This bot has the following set of features.
