@@ -7,12 +7,8 @@ import sys
 TOKEN = "TOKEN"
 
 cogs = [
-    'cogs.anti-invite',
-    'cogs.certify',
-    'cogs.eval',
+    'cogs.api',
     'cogs.info',
-    'cogs.moderation',
-    'cogs.roles',
     'cogs.ticket',
     'cogs.update'
 ]
