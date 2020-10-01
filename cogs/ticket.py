@@ -9,6 +9,20 @@ class Update(commands.Cog):
 
     @commands.group(name="apply")
     async def apply(self,ctx):
+        if (not ctx.guild or ctx.guild.id!=753089953256308957):
+            embed=discord.Embed(title="Wrong Servers.",description=F"{ctx.author.mention}, this server can't be used to start an application. Use the [Application Server](https://discord.gg/wbgEJGb).",color=0xFF0000)
+            await ctx.send(embed=embed,delete_after=10)
+            await asyncio.sleep(10)
+            return await ctx.message.delete()
+
+        if(ctx.channel.id!=754825766885130352):
+            embed=discord.Embed(title="Wrong Channel.",description=F"{ctx.author.mention}, this channel can't be used to start an application. Use <#754825766885130352>.",color=0xFF0000)
+            await ctx.send(embed=embed,delete_after=10)
+            await asyncio.sleep(10)
+            return await ctx.message.delete()
+        
+
+        
         guild=ctx.guild
         zuser=ctx.author
         overwrites = {
@@ -19,19 +33,7 @@ class Update(commands.Cog):
         
         name="ticket-"+str(zuser.name)
         name.replace(" ", "-")
-        channel = await guild.create_text_channel(name,overwrites=overwrites,category=self. bot.get_channel(694737424743530538))
-
-        if(ctx.channel.id!=672180506363822111 and ctx.channel.id!=672180547744956446 and ctx.channel.id!=672180644171743232):
-            embed=discord.Embed(title="Wrong Channel.",description=F"{ctx.author.mention}, this channel can't be used to start an application. Use <#672180506363822111>",color=0xFF0000)
-            await ctx.send(embed=embed,delete_after=10)
-            await asyncio.sleep(10)
-            return await ctx.message.delete()
-
-        
-        embed=discord.Embed(title="Applications Closed.",description=F"{ctx.author.mention}, applications are currently closed. More information is available in <#678408619737481226>",color=0xFF0000)
-        await ctx.send(embed=embed,delete_after=10)
-        await asyncio.sleep(10)
-        return await ctx.message.delete()
+        channel = await guild.create_text_channel(name,overwrites=overwrites,category=self.bot.get_channel(753093653957967993))
 
         embed=discord.Embed(title="Applications Created!",description=F"{ctx.author.mention}, your applications has been created in {channel.mention}",color=self.bot.embed)
         await ctx.channel.send(embed=embed,delete_after=10)
@@ -39,23 +41,23 @@ class Update(commands.Cog):
         await channel.send(content=ctx.author.mention,delete_after=1)
         embed=discord.Embed(title="Application",description=F"Loading...Please wait, this should only take a few seconds.",color=self.bot.embed)
         msg=await channel.send(embed=embed)
-        support="\U0001f1e6"
+        approver="\U0001f1e6"
         moderator="\U0001f1e7"
-        approver="\U0001f1e8"
+        support="\U0001f1e8"
         delete="\U0000274c"
 
         await msg.add_reaction("\U0001f1e6")
-        await msg.add_reaction("\U0001f1e7")
-        await msg.add_reaction("\U0001f1e8")
+        #await msg.add_reaction("\U0001f1e7")
+        #await msg.add_reaction("\U0001f1e8")
         await msg.add_reaction("\U0000274c")
 
-        embed=discord.Embed(title="Application",description=F"**Select The Job You Are Applying For**\n\n:regional_indicator_a: `Lab Support (Support Staff)`\n:regional_indicator_b: `Lab Security (Moderators)`\n:regional_indicator_c: `Bot Approver`\n:x:`Close This Application`",color=self.bot.embed)
+        embed=discord.Embed(title="Application",description=F"**Select The Job You Are Applying For**\n\n:regional_indicator_a: `Bot Approver`\n:x:`Close This Application`",color=self.bot.embed)
         await msg.edit(embed=embed)
 
         def reactioncheck(reaction,user):
             if (not user.bot):
                 if reaction.message.id==msg.id:
-                    if reaction.emoji in ["\U0001f1e6","\U0001f1e7","\U0001f1e8","\U0000274c"]:
+                    if reaction.emoji in ["\U0001f1e6","\U0000274c"]:
                         return True
             return False
 
@@ -196,7 +198,7 @@ class Update(commands.Cog):
             await res.delete()
             q1=res.content
 
-            embed=discord.Embed(title="Application: Approver",description=F"**Second Question: ** Read [docs.discordlabs.org](https://docs.discordlabs.org/docs).\nWhat are the rules regarding NSFW bots on the list?",color=self.bot.embed)
+            embed=discord.Embed(title="Application: Approver",description=F"**Second Question: ** Read [docs.discordlabs.org](https://docs.discordlabs.org/docs).\nWhat are the rules regarding NSFW bots on the list? Can bots mention NSFW in there description?",color=self.bot.embed)
             await msg.edit(embed=embed)
             res = await self.bot.wait_for('message', check=check)
             await res.delete()
@@ -220,10 +222,10 @@ class Update(commands.Cog):
             await res.delete()
             q5=res.content 
 
-            embed=discord.Embed(title="Application: Approver",description=F"**Name:** {first} {last}.\n**Official Website:** {q1}\n**NSFW Bots:** {q2}\n**Bot spamming server:** {q3}\n**Offline Bots:** {q4}\n**What Makes You Different:** {q5}",color=self.bot.embed)
+            embed=discord.Embed(title="Application: Approver",description=F"**Name:** {first} {last}.\n**Official Website:** {q1}\n**NSFW Bots:** {q2}\n**Bot Offline:** {q3}\n**Previous Experience:** {q4}\n**What Makes You Different:** {q5}",color=self.bot.embed)
             await msg.edit(embed=embed)
 
-            embed=discord.Embed(title="Thanks for applying!",description="We'll let you know if your accepted on April 15.",color=self.bot.embed)
+            embed=discord.Embed(title="Thanks for applying!",description="We'll review your answers and let you know if your ready to move to the next stage soon.",color=self.bot.embed)
             await channel.send(embed=embed)
 
     @commands.Cog.listener()
@@ -321,12 +323,7 @@ class Update(commands.Cog):
             await channel.send("Closing in 5 seconds")
             await asyncio.sleep(5)
             await channel.delete()
-
-
-
-
-        
-        
+             
 
 
 

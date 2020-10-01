@@ -3,7 +3,7 @@ The official source code for the Lab Manager Discord Bot.
 
 
 ## Config
-You should set your `Discord Token`, `MongoDB` connection URL and any applicable channel ID's in the `main.py` file. There are also other optional configurations in almost all other files.
+You should set your `Discord Token`, `MongoDB` connection URL and any applicable channel ID's in the `main.py` file. There are also other optional configurations in almost all other files. In the case that you want to use the statuspage.io integration, make sure to set your `API token`, `page id` & `metric id` in the `cogs/api.py` file.
 
 ## Setup
 ```shell
@@ -18,16 +18,26 @@ Note: A mongoDB instance is **required** to run this bot.
 ## Instant Deployment
 Alternatively, just click this button to develop in [Repl.it](https://repl.it), a top quality in-browser IDE! [![Run on Repl.it](https://repl.it/badge/github/labdiscord/bot)](https://repl.it/github/labdiscord/bot)
 
+# Changelog
+
+## V2.0
+### Added
+- Statuspage.io API Posting
+
+### Updated
+- Ticket system now works in a new server.
+
+### Removed
+- Moderation Commands (Migrated to [helper](http://dbots.cc/toast))
+- Reaction Roles (Migrated to [Helper](http://dbots.cc/helper))
+- Certification Commands (Migrated To Discord Bot Labs - Private Bot)
+
 ## Features
 This bot has the following set of features.
-- Anti invite (even on msg edit w/bypass role)
-- Certification & Vanity Commands to edit bot certification status in the database.
-- Eval commands to control the bot.
 - Info commands to set predefined msgs.
-- Mute commands for moderation.
-- Ticket system to apply for certification w/automated questions.
+- Ticket system to apply for certification w/automated questions (Works in seperate server.).
 - Automatic updates to bot status & avatar that happen every few minutes.
-- React to get a role.
+- Automated posting to statuspage.io API.
 
 
 ## Contributing
