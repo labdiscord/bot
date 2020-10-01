@@ -51,7 +51,7 @@ class Update(commands.Cog):
         #await msg.add_reaction("\U0001f1e8")
         await msg.add_reaction("\U0000274c")
 
-        embed=discord.Embed(title="Application",description=F"**Select The Job You Are Applying For**\n\n:regional_indicator_a: `Bot Approver`\n:x:`Close This Application`",color=self.bot.embed)
+        embed=discord.Embed(title="Application",description="**Select The Job You Are Applying For**\n\n:regional_indicator_a: `Bot Approver`\n:x:`Close This Application`",color=self.bot.embed)
         await msg.edit(embed=embed)
 
         def reactioncheck(reaction,user):
@@ -198,7 +198,7 @@ class Update(commands.Cog):
             await res.delete()
             q1=res.content
 
-            embed=discord.Embed(title="Application: Approver",description=F"**Second Question: ** Read [docs.discordlabs.org](https://docs.discordlabs.org/docs).\nWhat are the rules regarding NSFW bots on the list? Can bots mention NSFW in there description?",color=self.bot.embed)
+            embed=discord.Embed(title="Application: Approver",description="**Second Question: ** Read [docs.discordlabs.org](https://docs.discordlabs.org/docs).\nWhat are the rules regarding NSFW bots on the list? Can bots mention NSFW in there description?",color=self.bot.embed)
             await msg.edit(embed=embed)
             res = await self.bot.wait_for('message', check=check)
             await res.delete()

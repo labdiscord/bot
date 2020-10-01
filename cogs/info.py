@@ -15,7 +15,7 @@ class Update(commands.Cog):
 
         desc="""
 Below we have a list of the common issues you might run into! Take the time to **READ** them as most all questions are answered right here. \n\nIf your question is still not answered, feel free to ask in <#695065137698045993> or open a <#728695849286107288>.
-        """        
+        """
         embed1=discord.Embed(title="➤ Discord Labs FAQ",description=desc,color=0xFF0000)
         embed2=discord.Embed(title="➤ How do I become certified?",description="Checkout <#698422778575192094>. If you can't see that channel, wait until you have the <@&672176587449565233> role.",color=self.bot.embed)
         embed2=discord.Embed(title="➤ When will my bot get approved?",description="**We do not know.** \nJust view your bot on our live [queue](https://queue.discordlabs.org) which can be accessed by visiting [bots.discordlabs.org/queue](https://bots.discordlabs.org/queue). \n\n**Do not** under any circumstance ask for approvers to approve your bot / the status of your application, **we will get to your bot when we have time.**",color=0xFFA500)

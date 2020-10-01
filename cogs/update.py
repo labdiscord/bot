@@ -106,7 +106,7 @@ class Update(commands.Cog):
                                 if debug:
                                     print("Failed to pull stats from presence.")
                             
-                        else:        
+                        else:
                             update={"status":s,"name":b.name,"avatar":avatar}
                         statcord = None
                         try:
