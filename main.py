@@ -79,12 +79,12 @@ bot = Bot()
 
 
 @bot.command()
-@commands.check(lambda x: x.id in bot.devs)
+@commands.check(lambda x: x.author.id in bot.devs)
 async def restart(ctx):
   await ctx.send(F"Restarting. This may take a little! Please be patient with me.")
   os.execv(sys.executable, [sys.executable]+sys.argv)
 @bot.command()
-@commands.check(lambda x: x.id in bot.devs)
+@commands.check(lambda x: x.author.id in bot.devs)
 async def reload(ctx, cog = None):
     if not cog:
         for cg in bot.cogs.keys():
