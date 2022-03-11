@@ -3,7 +3,19 @@ The official source code for the Lab Manager Discord Bot.
 
 
 ## Config
-You should set your `Discord Token`, `MongoDB` connection URL and any applicable channel ID's in the `main.py` file. There are also other optional configurations in almost all other files. In the case that you want to use the statuspage.io integration, make sure to set your `API token`, `page id` & `metric id` in the `cogs/api.py` file.
+Create a file called `.env` in the main directory
+Then add the following to the file
+```
+TOKEN: (your token)
+MONGO_CONNECTION_URL: (the url)
+## Optional
+STATUS_API_TOKEN: (the statuspage.io API token)
+PAGE_ID: (the page ID)
+SMETRIC_ID: (the status metric ID)
+BMETRIC_ID: (the bot metric ID)
+```
+You should also change any applicable channel ID's in the `main.py` file. There are also other optional configurations in almost all other files. 
+The last four lines are optional for a statuspage.io integration
 
 ## Setup
 ```shell
