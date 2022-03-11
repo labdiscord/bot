@@ -3,19 +3,12 @@ from discord.ext import commands
 from pymongo import MongoClient as mcl 
 import os 
 import sys
-
-TOKEN = "TOKEN"
-
-cogs = [
-    'cogs.api',
-    'cogs.info',
-    'cogs.ticket',
-    'cogs.update'
-]
+from dotenv import load_dotenv
+load_dotenv()
 
 class Bot(commands.AutoShardedBot):
     def __init__(self):
-        super().__init__(command_prefix="?", case_insensitve=True)
+        super().__init__(intents=discord.Intents.all(),command_prefix=commands.when_mentioned_or('!'),help_command=None,activity=discord.Activity(name=' Over Discord Labs.', type=discord.ActivityType.watching),case_insensitive=True)
 
         self.check = ":white_check_mark:"
         self.x = ":x:"
@@ -23,15 +16,23 @@ class Bot(commands.AutoShardedBot):
             365958975201738764 # Anish
         ]
         
+    
 
+    async def on_command_error(self,ctx, error):
+        if ctx.command.has_error_handler():
+            return
+        if isinstance(error,commands.MissingPermissions):
+            ctx.reply(error.message)
+        elif isinstance(error,commands.CheckAnyFailure):
+            ctx.reply(error.message)
+        elif isinstance(error,commands.MissingRole):
+            ctx.reply(error.message)
+        else:
+            ctx.reply("An error occured")
     async def on_ready(self):
-        print(f"Bot is online!")
-
-        activity = discord.Activity(name=' Over Discord Labs.', type=discord.ActivityType.watching)
-        await bot.change_presence(activity=activity)
-        print('Intilized successfully.')
+        print('Bot Started')
         #MongoDB Stuff
-        self.client = mcl('MONGODB CONNECTION URL')
+        self.client = mcl(os.getenv('MONGO_CONNECTION_URL'))
         self.db=self.client['main']
         self.b = self.db['bots']
         self.a = self.db['ads']
@@ -67,31 +68,31 @@ class Bot(commands.AutoShardedBot):
 
 
 
-        for cog in cogs:
-            try:
-                bot.load_extension(cog)
-                print(f"Loaded {cog}")
-            except Exception as e:
-                print(e)
-
+        for file in os.listdir('cogs'):
+            if file.endswith('.py'):
+                try:
+                    print(f"Loading {file}")
+                    self.load_extension(f'cogs.{file[:-3]}')
+                except Exception as e:
+                    print(e,file=sys.error)
 bot = Bot()
-bot.remove_command('help')
+
+
 @bot.command()
+@commands.check(lambda x: x.id in bot.devs)
 async def restart(ctx):
-  if not ctx.author.id in bot.devs:
-    return
   await ctx.send(F"Restarting. This may take a little! Please be patient with me.")
-  await bot.change_presence(status = discord.Status.dnd, activity = discord.Game("RESTARTING BOT!"))
-  os.execv(sys.executable, ['python3.6'] + sys.argv)
+  os.execv(sys.executable, [sys.executable]+sys.argv)
 @bot.command()
+@commands.check(lambda x: x.id in bot.devs)
 async def reload(ctx, cog = None):
-    if not ctx.author.id in bot.devs:
-        return
     if not cog:
-        return
+        for cg in bot.cogs.keys():
+            bot.reload_extension(cg)
+
     try:
         bot.reload_extension(cog)
         await ctx.send(F"{bot.check} Successfully reloaded **{cog}**!")
     except Exception as e:
         await ctx.send(f"{bot.x} Oh no! There was an error reloading **{cog}**!\n**({e})**")
-bot.run(TOKEN)
+bot.run(os.getenv("TOKEN"))

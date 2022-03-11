@@ -8,6 +8,7 @@ class Update(commands.Cog):
         self.bot = bot
 
     @commands.command(name="faq")
+    @commands.has_role(608714147378626570)
     async def faq(self,ctx):
         role=ctx.guild.get_role(608714147378626570)
         if role not in ctx.author.roles:
@@ -32,6 +33,7 @@ Below we have a list of the common issues you might run into! Take the time to *
 
 
     @commands.command(name="bots")
+    @commands.has_role(608714147378626570)
     async def bots(self,ctx):
         role=ctx.guild.get_role(608714147378626570)
         if role not in ctx.author.roles:
@@ -56,12 +58,13 @@ Below we have a list of the common issues you might run into! Take the time to *
 
 
     @commands.command(name="rules")
+    @commands.has_role(608714147378626570)
     async def rules(self,ctx):
         role=ctx.guild.get_role(608714147378626570)
         if role not in ctx.author.roles:
             return
         desc="""
-Before you do anything, we strongly suggest you familirize yourself with the rules and information listed below.
+Before you do anything, we strongly suggest you familiarize yourself with the rules and information listed below.
 
 **Website:** [discordlabs.org](https://discordlabs.org)
 Bot List: [bots.discordlabs.org](https://bots.discordlabs.org)

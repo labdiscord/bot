@@ -51,6 +51,7 @@ class Update(commands.Cog):
             offline=0
             kicked=0
             olist=""
+            #The start of pain (WHO CODES LIKE THIS)
             for bot in mydoc:
                 try:
                     b = None
@@ -236,6 +237,8 @@ class Update(commands.Cog):
             embed=discord.Embed(title="Data Update Ended",description=F"Total Bots: {len(mydoc)}\n\nOnline Bots: {online}\nAway Bots: {away}\nDND Bots: {dnd}\nKicked Bots: {kicked}\n\n**Offline Bots:** {offline}\nOffline Bots: {olist}",color=self.bot.embed)
             await m.edit(embed=embed)
             await asyncio.sleep(30) # task runs every .5 mins
+            # The fact that someone wrote this is sad.
+            
             #print("Stats Update Done")
             #print(F"Total Bots: {len(mydoc)}\n\nOnline Bots: {online}\nAway Bots: {away}\nDND Bots: {dnd}\nKicked Bots: {kicked}\n\n**Offline Bots:** {offline}\nOffline Bots: {olist}")
         except:
