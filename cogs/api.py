@@ -1,17 +1,20 @@
 from discord.ext import commands, tasks
 import http.client, urllib.request, urllib.parse, urllib.error, time, requests
-
-api_key = ''
-page_id = ''
-smetric_id = ''
-bmetric_id = ''
+import os
+api_key = os.getenv('STATUS_API_TOKEN')
+page_id = os.getenv('PAGE_ID')
+smetric_id = os.getenv('SMETRIC_ID')
+bmetric_id = os.getenv('BMETRIC_ID')
 api_base = 'api.statuspage.io'
 
 class API(commands.Cog):
     def __init__(self, bot):
         """Initilize. This function posts latency to the statuspage.io API."""
         self.bot = bot
-        self.postapi.start()
+        if api_key and page_id and smetric_id and bmetric_id:
+            self.postapi.start()
+        else:
+            print("statuspage.io not configured! Not using the API")
     
     @tasks.loop(minutes=1)
     async def postapi(self):
